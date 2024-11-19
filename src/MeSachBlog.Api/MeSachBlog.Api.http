@@ -1,0 +1,6 @@
+@MeSachBlog.Api_HostAddress = http://localhost:5288
+
+GET {{MeSachBlog.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
