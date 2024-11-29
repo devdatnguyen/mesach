@@ -1,7 +1,10 @@
 using MeSachBlog.Api;
 using MeSachBlog.Core.Domain.Identity;
+using MeSachBlog.Core.Models.Content;
+using MeSachBlog.Core.Repositories;
 using MeSachBlog.Core.SeedWorks;
 using MeSachBlog.Data;
+using MeSachBlog.Data.Repositories;
 using MeSachBlog.Data.SeedWorks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -44,6 +47,23 @@ builder.Services.Configure<IdentityOptions>(options =>
 // Configure DI
 builder.Services.AddScoped(typeof(IRepository<,>), typeof(RepositoryBase<,>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+// Bussinese services and repositories
+var services = typeof(PostRepository).Assembly.GetTypes()
+    .Where(x => x.GetInterfaces().Any(i => i.Name == typeof(IRepository<,>).Name)
+    && !x.IsAbstract && x.IsClass && !x.IsGenericType);
+
+foreach (var serviece in services)
+{
+    var allInterfaces = serviece.GetInterfaces();
+    var directInterfaces = allInterfaces.Except(allInterfaces.SelectMany(t => t.GetInterfaces())).FirstOrDefault();
+    if (directInterfaces != null)
+    {
+        builder.Services.Add(new ServiceDescriptor(directInterfaces, serviece, ServiceLifetime.Scoped));
+    }
+}
+
+builder.Services.AddAutoMapper(typeof(PostInListDto));
 
 //Default config for ASP.NET Core
 builder.Services.AddControllers();
