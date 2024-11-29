@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeSachBlog.Api", "src\MeSachBlog.Api\MeSachBlog.Api.csproj", "{57813928-66CF-4345-9F7F-F921E5789672}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeSachBlog.Api", "src\MeSachBlog.Api\MeSachBlog.Api.csproj", "{57813928-66CF-4345-9F7F-F921E5789672}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeSachBlog.Core", "src\MeSachBlog.Core\MeSachBlog.Core.csproj", "{A990AE7F-07C5-446D-A71A-B92F855C2995}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeSachBlog.Core", "src\MeSachBlog.Core\MeSachBlog.Core.csproj", "{A990AE7F-07C5-446D-A71A-B92F855C2995}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeSachBlog.Data", "src\MeSachBlog.Data\MeSachBlog.Data.csproj", "{CEC30FF9-7C1C-431E-910E-2D6F4362A895}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeSachBlog.Data", "src\MeSachBlog.Data\MeSachBlog.Data.csproj", "{CEC30FF9-7C1C-431E-910E-2D6F4362A895}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeSachBlog.WebApp", "src\MeSachBlog.WebApp\MeSachBlog.WebApp.csproj", "{A063D5C5-9F9E-42D6-8986-EC2DC664CC48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeSachBlog.WebApp", "src\MeSachBlog.WebApp\MeSachBlog.WebApp.csproj", "{A063D5C5-9F9E-42D6-8986-EC2DC664CC48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

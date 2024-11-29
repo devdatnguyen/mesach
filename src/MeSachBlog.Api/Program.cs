@@ -1,3 +1,4 @@
+using MeSachBlog.Api;
 using MeSachBlog.Core.Domain.Identity;
 using MeSachBlog.Data;
 using Microsoft.AspNetCore.Identity;
@@ -58,5 +59,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+//seeding data
+app.MigrateDatabase();
 
 app.Run();
