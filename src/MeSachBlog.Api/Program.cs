@@ -1,6 +1,8 @@
 using MeSachBlog.Api;
 using MeSachBlog.Core.Domain.Identity;
+using MeSachBlog.Core.SeedWorks;
 using MeSachBlog.Data;
+using MeSachBlog.Data.SeedWorks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,7 +10,6 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-// Add services to the container.
 
 //Configure DbContext and ASP.NET Core Identity
 builder.Services.AddDbContext<MeSachContext>(options =>
@@ -38,6 +39,11 @@ builder.Services.Configure<IdentityOptions>(options =>
 }
 
 );
+
+// Add services to the container.
+// Configure DI
+builder.Services.AddScoped(typeof(IRepository<,>), typeof(RepositoryBase<,>));
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 //Default config for ASP.NET Core
 builder.Services.AddControllers();
