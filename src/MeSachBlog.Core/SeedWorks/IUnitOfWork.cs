@@ -1,7 +1,10 @@
-﻿namespace MeSachBlog.Core.SeedWorks
+﻿using MeSachBlog.Core.Repositories;
+
+namespace MeSachBlog.Core.SeedWorks
 {
     public interface IUnitOfWork
     {
-        Task<int> CampleteAsync();
+        IPostRepository Posts { get; }
+        Task<int> CompleteAsync();
     }
 }
