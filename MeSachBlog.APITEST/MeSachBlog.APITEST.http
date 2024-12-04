@@ -1,6 +1,0 @@
-@MeSachBlog.APITEST_HostAddress = http://localhost:5155
-
-GET {{MeSachBlog.APITEST_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
