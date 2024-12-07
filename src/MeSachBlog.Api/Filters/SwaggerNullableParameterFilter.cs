@@ -2,13 +2,13 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace MeSachBlog.Api
+namespace MeSachBlog.Api.Filters
 {
     public class SwaggerNullableParameterFilter : IParameterFilter
     {
         public void Apply(OpenApiParameter parameter, ParameterFilterContext context)
         {
-            if (!parameter.Schema.Nullable && 
+            if (!parameter.Schema.Nullable &&
                 (context.ApiParameterDescription.Type.IsNullableType() || !context.ApiParameterDescription.Type.IsValueType))
             {
                 parameter.Schema.Nullable = true;

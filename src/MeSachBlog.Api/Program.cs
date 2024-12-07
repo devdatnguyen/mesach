@@ -1,9 +1,9 @@
 using MeSachBlog.Api;
+using MeSachBlog.Api.Filters;
 using MeSachBlog.Api.Services;
 using MeSachBlog.Core.ConfigOptions;
 using MeSachBlog.Core.Domain.Identity;
 using MeSachBlog.Core.Models.Content;
-using MeSachBlog.Core.Repositories;
 using MeSachBlog.Core.SeedWorks;
 using MeSachBlog.Data;
 using MeSachBlog.Data.Repositories;
@@ -67,7 +67,10 @@ foreach (var serviece in services)
     }
 }
 
+//Auto Mapper
 builder.Services.AddAutoMapper(typeof(PostInListDto));
+
+//Authen and authorization
 builder.Services.Configure<JwtTokenSettings>(configuration.GetSection("JwtTokenSettings"));
 builder.Services.AddScoped<SignInManager<AppUser>, SignInManager<AppUser>>();
 builder.Services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
