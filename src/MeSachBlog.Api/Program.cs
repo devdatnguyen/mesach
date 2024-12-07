@@ -17,7 +17,14 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-
+var MeSachCorsPolicy = "MeSachCorsPolicy";
+builder.Services.AddCors(o => o.AddPolicy(MeSachCorsPolicy, builder =>
+{
+    builder.AllowAnyMethod()
+        .AllowAnyHeader()
+        .WithOrigins(configuration["AllowedOrigins"])
+        .AllowCredentials();
+}));
 //Configure DbContext and ASP.NET Core Identity
 builder.Services.AddDbContext<MeSachContext>(options =>
 {
@@ -113,7 +120,7 @@ if (app.Environment.IsDevelopment())
         }
     );
 }
-
+app.UseCors(MeSachCorsPolicy);
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
