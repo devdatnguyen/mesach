@@ -7,7 +7,10 @@ export const navItems: INavData[] = [
     iconComponent: { name: 'cil-speedometer' },
     badge: {
       color: 'info',
-      text: 'NEW'
+      text: 'NEW',
+    },
+    attributes: {
+      "policyName": "Permissions.Dashboard.View"
     }
   },
   {
@@ -17,22 +20,35 @@ export const navItems: INavData[] = [
     children: [
       {
         name: 'Danh mục',
-        url: '/content/post-categories'
+        url: '/content/post-categories',
+        attributes: {
+          "policyName": "Permissions.PostCategories.View"
+        }
       },
       {
         name: 'Bài viết',
-        url: '/content/posts'
+        url: '/content/posts',
+        attributes: {
+          "policyName": "Permissions.Posts.View"
+        }
       },
       {
         name: 'Loạt bài',
-        url: '/content/series'
+        url: '/content/series',
+        attributes: {
+          "policyName": "Permissions.Series.View"
+        }
       },
       {
         name: 'Nhuận bút',
-        url: 'content/royalty'
-      },
-    ]
+        url: '/content/royalty',
+        attributes: {
+          "policyName": "Permissions.Loyalty.View"
+        }
+      }
+    ],
   },
+
   {
     name: 'Hệ thống',
     url: '/system',
@@ -40,13 +56,18 @@ export const navItems: INavData[] = [
     children: [
       {
         name: 'Quyền',
-        url: 'system/roles'
+        url: '/system/roles',
+        attributes: {
+          "policyName": "Permissions.Roles.View"
+        }
       },
       {
         name: 'Người dùng',
-        url: '/system/users'
-      },
-    ]
+        url: '/system/users',
+        attributes: {
+          "policyName": "Permissions.Users.View"
+        }
+      }
+    ],
   },
-
 ];

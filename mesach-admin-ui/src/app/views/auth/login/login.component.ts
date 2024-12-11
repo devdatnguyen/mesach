@@ -1,18 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdminApiAuthApiClient, AuthenticatedResult, LoginRequest } from 'src/app/api/admin-api.service.generated';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import {UrlConstants} from 'src/app/shared/constants/url.constants';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
   loginForm: FormGroup;
+  private ngUnsubscribe = new Subject<void>();
+  loading = false;
 
   constructor(private fb: FormBuilder,
     private authApiClient: AdminApiAuthApiClient,
@@ -25,7 +28,13 @@ export class LoginComponent {
     });
   }
 
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
+
   login() {
+    this.loading = true;
     var request: LoginRequest = new LoginRequest(
       {
         userName: this.loginForm.controls['userName'].value,
@@ -33,7 +42,9 @@ export class LoginComponent {
       }
     );
 
-    this.authApiClient.login(request).subscribe(
+    this.authApiClient.login(request)
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe(
       {
         next: (res: AuthenticatedResult) => {
           // Save token to local storage
@@ -46,6 +57,7 @@ export class LoginComponent {
         error: (error: any) => {
           console.log(error);
           this.alertService.showError('Đăng nhập thất bại!');
+          this.loading = false;
         }
       }
     );

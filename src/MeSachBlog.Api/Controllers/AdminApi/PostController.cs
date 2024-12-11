@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
-using Azure.Core;
 using MeSachBlog.Core.Domain.Content;
 using MeSachBlog.Core.Models;
 using MeSachBlog.Core.Models.Content;
 using MeSachBlog.Core.SeedWorks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MeSachBlog.Api.Controllers.AdminApi

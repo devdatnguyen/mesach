@@ -9,12 +9,14 @@ import { Page500Component } from './page500/page500.component';
 import { ButtonModule, CardModule, FormModule, GridModule } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Page403Component } from './page403/page403.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
+    Page403Component,
     Page404Component,
     Page500Component
   ],
