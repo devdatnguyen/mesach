@@ -1,4 +1,5 @@
 using MeSachBlog.Api;
+using MeSachBlog.Api.Authorization;
 using MeSachBlog.Api.Filters;
 using MeSachBlog.Api.Services;
 using MeSachBlog.Core.ConfigOptions;
@@ -9,6 +10,7 @@ using MeSachBlog.Data;
 using MeSachBlog.Data.Repositories;
 using MeSachBlog.Data.SeedWorks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -21,6 +23,11 @@ var configuration = builder.Configuration;
 var connectionString = configuration.GetConnectionString("DefaultConnection");
 
 var MeSachCorsPolicy = "MeSachCorsPolicy";
+
+builder.Services.AddSingleton<IAuthorizationPolicyProvider,PermissionPolicyProvider>();
+builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
+
+
 builder.Services.AddCors(o => o.AddPolicy(MeSachCorsPolicy, builder =>
 {
     builder.AllowAnyMethod()
