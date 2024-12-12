@@ -13,10 +13,10 @@ namespace MeSachBlog.Data
 
         }
         public DbSet<Post> Posts { get; set; }
-        public DbSet<PostCategory> Categories { get; set; }
-        public DbSet<Tag> Tags { get; set; }
+        public DbSet<PostCategory> PostCategories { get; set; }
         public DbSet<PostTag> PostTags { get; set; }
-        public DbSet<PostActivityLog> PostActivityLog { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<PostActivityLog> PostActivityLogs { get; set; }
         public DbSet<Series> Series { get; set; }
         public DbSet<PostInSeries> PostInSeries { get; set; }
 
